@@ -1,10 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Chud Jugs</title>
-<header>
-    <link rel="stylesheet" type="text/css" href="format.css">
-    <div class="pfp">
-        <img src="https://cdn.corenexis.com/f/Lys8oc8w8uL.png" alt="Business Image">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chud Jug energy drinks — bold flavor, full volume.">
+  <title>Chud Jug Energy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Chud Jug home">
+      <span class="brand-mark">CJ</span>
+      <span class="brand-copy"><strong>CHUD JUG</strong><small>ENERGY DRINK</small></span>
+    </a>
+
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+
+    <nav class="main-nav" aria-label="Primary navigation">
+      <a href="#products">Browse All</a>
+      <a href="#details">Product Details</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact Us</a>
+      <button class="cart-button" id="openCart" aria-label="Open shopping cart">
+        Cart <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-grain"></div>
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Best sellers</p>
+        <h1>Flavor on.<br>Full volume.</h1>
+        <p>Crack open loud flavor, high-energy attitude, and a refreshingly ridiculous amount of personality.</p>
+        <a class="cta" href="#products">Find your flavor</a>
+      </div>
+
+      <div class="hero-logo-stage" aria-label="Animated Chud Jug logo banner">
+        <div class="logo-marquee logo-marquee-one" aria-hidden="true">
+          <div class="logo-track">
+            <img src="assets/chud-jug-moving-logo.png" alt="">
+            <img src="assets/chud-jug-moving-logo.png" alt="">
+          </div>
+        </div>
+        <div class="logo-marquee logo-marquee-two" aria-hidden="true">
+          <div class="logo-track reverse">
+            <img src="assets/chud-jug-moving-logo.png" alt="">
+            <img src="assets/chud-jug-moving-logo.png" alt="">
+          </div>
+        </div>
+        <p class="hero-stamp">Crack it. Chug it. Own the noise.</p>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         MOVING LOGO BAND
+         Replace the image file here:
+         assets/chud-jug-moving-logo.png
+         ========================================================= -->
+    <section class="page-logo-band" aria-label="Moving Chud Jug logo band">
+      <div class="page-logo-track" aria-hidden="true">
+        <img src="assets/chud-jug-moving-logo.png" alt="">
+        <img src="assets/chud-jug-moving-logo.png" alt="">
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PRODUCTS / SHOP SECTION
+         Product names, prices, descriptions, and image paths are
+         edited inside the products array in script.js.
+         Put product pictures inside assets/products/.
+         ========================================================= -->
+    <section class="products section" id="products">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Shop the lineup</p>
+          <h2>Choose your chaos</h2>
+        </div>
+
+        <div class="controls">
+          <label>
+            <span class="sr-only">Search products</span>
+            <input id="searchInput" type="search" placeholder="Search flavors...">
+          </label>
+          <select id="categoryFilter" aria-label="Filter products by category">
+            <option value="all">All types</option>
+            <option value="original">Original</option>
+            <option value="zero">Zero sugar</option>
+            <option value="fruit">Fruit</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="details section" id="details">
+      <div class="details-card reveal">
+        <div>
+          <p class="eyebrow">Why Chud Jug?</p>
+          <h2>Built for long nights and louder days.</h2>
+        </div>
+        <div class="detail-tabs">
+          <div class="tab-buttons" role="tablist" aria-label="Product information tabs">
+            <button class="tab-button active" data-tab="energy" role="tab">Energy</button>
+            <button class="tab-button" data-tab="flavor" role="tab">Flavor</button>
+            <button class="tab-button" data-tab="ingredients" role="tab">Ingredients</button>
+          </div>
+          <div class="tab-panel active" id="energy">
+            <h3>Clean, focused kick</h3>
+            <p>Made for study sessions, workouts, gaming marathons, and every deadline you definitely did not procrastinate on.</p>
+          </div>
+          <div class="tab-panel" id="flavor">
+            <h3>Big flavor, no whispering</h3>
+            <p>Every can delivers a sharp, sparkling profile with bold fruit notes and a crisp finish.</p>
+          </div>
+          <div class="tab-panel" id="ingredients">
+            <h3>Know what you drink</h3>
+            <p>Each product card includes caffeine, sugar, and flavor information. Always enjoy responsibly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section" id="about">
+      <div class="about-copy reveal">
+        <p class="eyebrow">About us</p>
+        <h2>Born loud. Poured cold.</h2>
+        <p>Chud Jug started as a class project with one simple mission: design an energy drink brand that feels fearless, fun, and impossible to ignore.</p>
+        <p>Our visual identity mixes industrial textures, oversized typography, and punchy neon accents to create a high-energy experience on every screen.</p>
+      </div>
+      <div class="about-stat-grid">
+        <div><strong>6</strong><span>Flavors</span></div>
+        <div><strong>3</strong><span>Categories</span></div>
+        <div><strong>100%</strong><span>Full volume</span></div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="contact-copy">
+        <p class="eyebrow">Contact us</p>
+        <h2>Send us a message</h2>
+        <p>Questions, collaborations, or flavor suggestions? Drop them below.</p>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <div class="form-row">
+          <label>Full name<input id="name" name="name" type="text" required></label>
+          <label>Email<input id="email" name="email" type="email" required></label>
+        </div>
+        <label>Subject<input id="subject" name="subject" type="text" required></label>
+        <label>Message<textarea id="message" name="message" rows="5" required></textarea></label>
+        <button class="cta" type="submit">Send message</button>
+        <p class="form-status" id="formStatus" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" aria-label="Shopping cart">
+    <div class="cart-header">
+      <div>
+        <p class="eyebrow">Your order</p>
+        <h2>Shopping cart</h2>
+      </div>
+      <button class="icon-button" id="closeCart" aria-label="Close shopping cart">×</button>
     </div>
-</header>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total"><span>Total</span><strong id="cartTotal">₱0.00</strong></div>
+      <button class="cta full-width" id="checkoutButton">Checkout</button>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="icon-button modal-close" id="closeModal" aria-label="Close product details">×</button>
+    <div class="modal-visual" id="modalVisual"></div>
+    <div class="modal-content">
+      <p class="eyebrow" id="modalCategory"></p>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <ul id="modalFacts"></ul>
+      <button class="cta" id="modalAddButton">Add to cart</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="brand footer-brand">
+      <span class="brand-mark">CJ</span>
+      <span class="brand-copy"><strong>CHUD JUG</strong><small>ENERGY DRINK</small></span>
+    </div>
+    <p>© 2026 Chud Jug. Student project website.</p>
+  </footer>
+
+  <!-- =========================================================
+       PRODUCT CARD TEMPLATE
+       JavaScript fills this template once for every product.
+       The <img> source comes from the image property in script.js.
+       ========================================================= -->
+  <template id="productTemplate">
+    <article class="product-card reveal">
+      <button class="product-visual" aria-label="View product details">
+        <img class="product-image" src="" alt="">
+        <span class="image-placeholder" aria-hidden="true">
+          PRODUCT IMAGE<br>
+          <small>assets/products/your-image.png</small>
+        </span>
+      </button>
+      <div class="product-info">
+        <p class="product-type"></p>
+        <h3></h3>
+        <p class="product-description"></p>
+        <div class="product-bottom">
+          <strong class="product-price"></strong>
+          <button class="add-button">Add to cart</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
 </html>
