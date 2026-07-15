@@ -14,11 +14,11 @@ img
 }
 header
 {
-    display: flex;
-    align-items: center;
+    width: 300px; 
+    margin: 30px auto;  
+    padding: 20px;
+    border: 1px solid #ccc;
     border-radius: 15px;
-    box-sizing: border-box;
-    padding: 50px 80px;
-    background-color: #ffffff;
-    margin-bottom: 25px;
+    background: white;
+    text-align: center;
 }
