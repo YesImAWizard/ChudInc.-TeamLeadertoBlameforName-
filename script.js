@@ -1,36 +1,39 @@
 const products = [
   {
     id: 1,
-    name: "Original Overdrive",
+    name: "Slurp Juice",
     category: "original",
     categoryLabel: "Original",
     price: 89,
-    description: "Classic citrus energy flavor with a sharp, sparkling finish.",
-    facts: ["160 mg caffeine", "14 g sugar", "500 mL can"],
-    bg: "linear-gradient(90deg,#171717,#3d3d3d 48%,#111)",
-    accent: "#f3c75d"
+    image: "https://cdn.corenexis.com/f/y0laqxn3GTK.png",
+    description: "An electrifying blue citrus blend with a tangy lime kick, delivering a crisp, refreshing burst of energy.",
+    facts: ["160 mg caffeine", "0 crash formula", "473 mL can"],
+    bg: "linear-gradient(135deg, #05070d 0%, #0a1b3f 35%, #0f4aa6 65%, #081018 100%)",
+    accent: "#8DFF00"
   },
   {
     id: 2,
-    name: "Pure Chaos Zero",
+    name: "Chud Splash",
     category: "zero",
     categoryLabel: "Zero Sugar",
     price: 95,
-    description: "Bright silver citrus flavor with zero sugar and full attitude.",
-    facts: ["150 mg caffeine", "0 g sugar", "500 mL can"],
-    bg: "linear-gradient(120deg,#fafafa,#8b8b8b 45%,#f6f6f6 70%,#555)",
-    accent: "#111111"
+    image: "https://cdn.corenexis.com/f/XmtTafl3FrF.png",
+    description: "A fiery orange citrus blast with bold tropical notes and an intense energy kick—packed with flavor, not sugar.",
+    facts: ["150 mg caffeine", "0 g sugar", "437 mL can"],
+    bg: "linear-gradient(135deg, #050505 0%, #2b0c02 30%, #7a1d00 65%, #120300 100%)",
+    accent: "#FF7A00"
   },
   {
     id: 3,
-    name: "Rage Berry",
+    name: "Flow Fizz",
     category: "fruit",
     categoryLabel: "Fruit",
     price: 99,
-    description: "A loud mix of raspberry, cherry, and dark berry flavors.",
+    image: "https://cdn.corenexis.com/f/cU9VarAmOjO.png",
+    description: "A bold fusion of juicy grape, blackberry, and blackcurrant with a smooth, electric finish.",
     facts: ["160 mg caffeine", "13 g sugar", "500 mL can"],
-    bg: "repeating-linear-gradient(35deg,#191919 0 16px,#7a1020 17px 20px,#191919 21px 38px)",
-    accent: "#ef334d"
+    bg: "linear-gradient(135deg, #050505 0%, #18032b 30%, #4b1386 65%, #09010f 100%)",
+    accent: "#A855F7"
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const products = [
     category: "fruit",
     categoryLabel: "Fruit",
     price: 99,
+    image: "assets/products/toxic-lime.png",
     description: "Electric lime flavor with a sour snap and crisp finish.",
     facts: ["155 mg caffeine", "12 g sugar", "500 mL can"],
     bg: "linear-gradient(120deg,#07160a,#193d17 48%,#050505)",
@@ -49,6 +53,7 @@ const products = [
     category: "zero",
     categoryLabel: "Zero Sugar",
     price: 95,
+    image: "assets/products/midnight-grape-zero.png",
     description: "Dark grape and blackberry flavor without the sugar crash.",
     facts: ["150 mg caffeine", "0 g sugar", "500 mL can"],
     bg: "linear-gradient(120deg,#11051a,#54227b 50%,#120718)",
@@ -60,6 +65,7 @@ const products = [
     category: "fruit",
     categoryLabel: "Fruit",
     price: 99,
+    image: "assets/products/mango-meltdown.png",
     description: "Juicy mango flavor with tropical citrus and a bright finish.",
     facts: ["160 mg caffeine", "13 g sugar", "500 mL can"],
     bg: "linear-gradient(120deg,#291400,#ce6e05 50%,#251003)",
@@ -82,14 +88,20 @@ const overlay = document.getElementById("overlay");
 const modal = document.getElementById("productModal");
 
 function peso(value) {
-  return new Intl.NumberFormat("en-PH", { style: "currency", currency: "PHP" }).format(value);
+  return new Intl.NumberFormat("en-PH", {
+    style: "currency",
+    currency: "PHP"
+  }).format(value);
 }
 
 function renderProducts() {
   const term = searchInput.value.trim().toLowerCase();
   const category = categoryFilter.value;
+
   const filtered = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(term) || product.description.toLowerCase().includes(term);
+    const matchesSearch =
+      product.name.toLowerCase().includes(term) ||
+      product.description.toLowerCase().includes(term);
     const matchesCategory = category === "all" || product.category === category;
     return matchesSearch && matchesCategory;
   });
@@ -105,12 +117,24 @@ function renderProducts() {
     const card = template.content.cloneNode(true);
     const article = card.querySelector(".product-card");
     const visual = card.querySelector(".product-visual");
-    const miniCan = card.querySelector(".mini-can");
+    const image = card.querySelector(".product-image");
+    const placeholder = card.querySelector(".image-placeholder");
 
     visual.style.background = `radial-gradient(circle, ${product.accent}33, transparent 60%), #0b0b0b`;
-    miniCan.style.setProperty("--can-bg", product.bg);
-    miniCan.style.setProperty("--can-accent", product.accent);
-    miniCan.querySelector("span").textContent = product.name;
+
+    if (product.image) {
+      image.src = product.image;
+      image.alt = product.name;
+      image.loading = "lazy";
+      image.decoding = "async";
+      article.classList.add("has-image");
+      if (placeholder) placeholder.style.display = "none";
+    } else {
+      article.classList.add("no-image");
+      image.removeAttribute("src");
+      image.alt = product.name;
+      if (placeholder) placeholder.style.display = "grid";
+    }
 
     card.querySelector(".product-type").textContent = product.categoryLabel;
     card.querySelector("h3").textContent = product.name;
@@ -119,16 +143,18 @@ function renderProducts() {
 
     visual.addEventListener("click", () => openProductModal(product));
     card.querySelector(".add-button").addEventListener("click", () => addToCart(product.id));
-    productGrid.appendChild(card);
 
+    productGrid.appendChild(card);
     requestAnimationFrame(() => article.classList.add("visible"));
   });
 }
 
 function addToCart(productId) {
   const existing = cart.find(item => item.id === productId);
+
   if (existing) existing.quantity += 1;
   else cart.push({ id: productId, quantity: 1 });
+
   saveCart();
   openCart();
 }
@@ -136,8 +162,12 @@ function addToCart(productId) {
 function changeQuantity(productId, amount) {
   const item = cart.find(entry => entry.id === productId);
   if (!item) return;
+
   item.quantity += amount;
-  if (item.quantity <= 0) cart = cart.filter(entry => entry.id !== productId);
+  if (item.quantity <= 0) {
+    cart = cart.filter(entry => entry.id !== productId);
+  }
+
   saveCart();
 }
 
@@ -153,6 +183,7 @@ function saveCart() {
 
 function renderCart() {
   cartItems.innerHTML = "";
+
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cart.reduce((sum, item) => {
     const product = products.find(product => product.id === item.id);
@@ -186,11 +217,13 @@ function renderCart() {
       <div>
         <strong>${peso(product.price * item.quantity)}</strong><br>
         <button class="remove-button">Remove</button>
-      </div>`;
+      </div>
+    `;
 
     row.querySelector('[data-action="minus"]').addEventListener("click", () => changeQuantity(product.id, -1));
     row.querySelector('[data-action="plus"]').addEventListener("click", () => changeQuantity(product.id, 1));
     row.querySelector(".remove-button").addEventListener("click", () => removeFromCart(product.id));
+
     cartItems.appendChild(row);
   });
 }
@@ -218,8 +251,8 @@ function openProductModal(product) {
   document.getElementById("modalFacts").innerHTML = product.facts.map(fact => `<li>${fact}</li>`).join("");
 
   const visual = document.getElementById("modalVisual");
-  visual.style.setProperty("--modal-bg", `radial-gradient(circle, ${product.accent}55, transparent 65%), #080808`);
-  visual.innerHTML = `<div class="mini-can" style="--can-bg:${product.bg};--can-accent:${product.accent};"><span>${product.name}</span></div>`;
+  visual.style.background = `radial-gradient(circle, ${product.accent}55, transparent 65%), #080808`;
+  visual.innerHTML = `<img class="modal-product-image" src="${product.image}" alt="${product.name}">`;
 
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
@@ -230,6 +263,7 @@ function openProductModal(product) {
 function closeModal() {
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden", "true");
+
   if (!cartDrawer.classList.contains("open")) {
     overlay.classList.remove("active");
     document.body.classList.remove("no-scroll");
@@ -244,6 +278,7 @@ document.getElementById("closeModal").addEventListener("click", closeModal);
 document.getElementById("modalAddButton").addEventListener("click", () => {
   if (activeProduct) addToCart(activeProduct.id);
 });
+
 overlay.addEventListener("click", () => {
   closeCart();
   closeModal();
@@ -254,6 +289,7 @@ document.getElementById("checkoutButton").addEventListener("click", () => {
     alert("Your cart is empty.");
     return;
   }
+
   alert("Checkout simulation complete! Thanks for choosing Chud Jug.");
   cart = [];
   saveCart();
@@ -262,19 +298,24 @@ document.getElementById("checkoutButton").addEventListener("click", () => {
 
 const menuToggle = document.querySelector(".menu-toggle");
 const mainNav = document.querySelector(".main-nav");
+
 menuToggle.addEventListener("click", () => {
   const isOpen = mainNav.classList.toggle("open");
   menuToggle.setAttribute("aria-expanded", String(isOpen));
 });
-mainNav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
-  mainNav.classList.remove("open");
-  menuToggle.setAttribute("aria-expanded", "false");
-}));
+
+mainNav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
 
 document.querySelectorAll(".tab-button").forEach(button => {
   button.addEventListener("click", () => {
     document.querySelectorAll(".tab-button").forEach(item => item.classList.remove("active"));
     document.querySelectorAll(".tab-panel").forEach(panel => panel.classList.remove("active"));
+
     button.classList.add("active");
     document.getElementById(button.dataset.tab).classList.add("active");
   });
@@ -282,6 +323,7 @@ document.querySelectorAll(".tab-button").forEach(button => {
 
 document.getElementById("contactForm").addEventListener("submit", event => {
   event.preventDefault();
+
   const status = document.getElementById("formStatus");
   const fields = ["name", "email", "subject", "message"].map(id => document.getElementById(id));
   const emptyField = fields.find(field => !field.value.trim());
@@ -293,6 +335,7 @@ document.getElementById("contactForm").addEventListener("submit", event => {
     emptyField.focus();
     return;
   }
+
   if (!emailValid) {
     status.textContent = "Please enter a valid email address.";
     email.focus();
@@ -307,7 +350,7 @@ const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) entry.target.classList.add("visible");
   });
-}, { threshold: .12 });
+}, { threshold: 0.12 });
 
 document.querySelectorAll(".reveal").forEach(element => observer.observe(element));
 
