@@ -7,7 +7,7 @@ const products = [
     price: 89,
     image: "https://cdn.corenexis.com/f/y0laqxn3GTK.png",
     description: "An electrifying blue citrus blend with a tangy lime kick, delivering a crisp, refreshing burst of energy.",
-    facts: ["160 mg caffeine", "0 crash formula", "473 mL can"],
+    facts: ["160 mg caffeine", "0 crash formula", "500 mL can"],
     bg: "linear-gradient(135deg, #05070d 0%, #0a1b3f 35%, #0f4aa6 65%, #081018 100%)",
     accent: "#8DFF00"
   },
@@ -19,7 +19,7 @@ const products = [
     price: 95,
     image: "https://cdn.corenexis.com/f/XmtTafl3FrF.png",
     description: "A fiery orange citrus blast with bold tropical notes and an intense energy kick—packed with flavor, not sugar.",
-    facts: ["150 mg caffeine", "0 g sugar", "437 mL can"],
+    facts: ["150 mg caffeine", "0 g sugar", "500 mL can"],
     bg: "linear-gradient(135deg, #050505 0%, #2b0c02 30%, #7a1d00 65%, #120300 100%)",
     accent: "#FF7A00"
   },
@@ -43,7 +43,7 @@ const products = [
     price: 99,
     image: "https://cdn.corenexis.com/f/JUaNAu5RSjz.png",
     description: "A sharp citrus-lime blast with electric energy and a clean, focused finish.",
-    facts: ["160 mg caffeine", "Naturally & artificially flavored", "473 mL can"],
+    facts: ["160 mg caffeine", "Naturally & artificially flavored", "500 mL can"],
     bg: "linear-gradient(135deg, #050505 0%, #111700 30%, #2f3f00 65%, #060800 100%)",
     accent: "#d8ff00"
   },
@@ -55,7 +55,7 @@ const products = [
     price: 95,
     image: "https://cdn.corenexis.com/f/EsGeR4v9aAd.png",
     description: "An explosive blend of ripe mango, juicy pineapple, and passion fruit with a refreshing tropical finish.",
-    facts: ["160 mg caffeine", "15 g sugar", "473 mL can"],
+    facts: ["160 mg caffeine", "15 g sugar", "500 mL can"],
     bg: "linear-gradient(135deg, #050505 0%, #3a1800 30%, #ff8c00 65%, #4a2200 100%)",
     accent: "#FFA500",
   },
@@ -67,7 +67,7 @@ const products = [
     price: 99,
     image: "https://cdn.corenexis.com/f/Kg680pPckju.png",
     description: "A bold berry blast with raspberry, blueberry, and blackberry notes for late-night focus and nonstop energy.",
-    facts: ["160 mg caffeine", "14 g sugar", "473 mL can"],
+    facts: ["160 mg caffeine", "14 g sugar", "500 mL can"],
     bg: "linear-gradient(135deg, #050505 0%, #1b0825 30%, #7a1f63 60%, #08121f 100%)",
     accent: "#ff3ea5",
   }
