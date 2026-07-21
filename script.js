@@ -38,8 +38,8 @@ const products = [
   {
     id: 4,
     name: "Awaken Chud",
-    category: "citrus",
-    categoryLabel: "Citrus Lime",
+    category: "original",
+    categoryLabel: "Original",
     price: 99,
     image: "https://cdn.corenexis.com/f/JUaNAu5RSjz.png",
     description: "A sharp citrus-lime blast with electric energy and a clean, focused finish.",
@@ -50,8 +50,8 @@ const products = [
   {
     id: 5,
     name: "Mango Bomb",
-    category: "tropical",
-    categoryLabel: "Tropical",
+    category: "fruit",
+    categoryLabel: "Fruit",
     price: 95,
     image: "https://cdn.corenexis.com/f/EsGeR4v9aAd.png",
     description: "An explosive blend of ripe mango, juicy pineapple, and passion fruit with a refreshing tropical finish.",
@@ -62,8 +62,8 @@ const products = [
   {
     id: 6,
     name: "Overworked Dream",
-    category: "berry",
-    categoryLabel: "Berry",
+    category: "zero",
+    categoryLabel: "Zero Sugar",
     price: 99,
     image: "https://cdn.corenexis.com/f/Kg680pPckju.png",
     description: "A bold berry blast with raspberry, blueberry, and blackberry notes for late-night focus and nonstop energy.",
